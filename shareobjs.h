@@ -9,8 +9,8 @@ typedef struct pseudotree Pseudotree;
 struct proc
 {
     pid_t pid, // proceess id
-    stride,    // measurement of priority level
-    tickets,
+    currency,  // measurement of priority level
+    stride,
     active; // bool: process can run now
     struct
     {

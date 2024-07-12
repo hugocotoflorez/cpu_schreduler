@@ -7,7 +7,7 @@ void pseudotree_insert(Pseudotree* t, Proc p)
     new_node->proc        = p;
     new_node->next        = NULL;
 
-    if (t->first == NULL || t->first->proc.stride > new_node->proc.stride)
+    if (t->first == NULL || t->first->proc.currency > new_node->proc.currency)
     {
         new_node->next = t->first;
         t->first       = new_node;
@@ -15,7 +15,8 @@ void pseudotree_insert(Pseudotree* t, Proc p)
     }
 
     current = t->first;
-    while (current->next != NULL && current->next->proc.stride <= new_node->proc.stride)
+    while (current->next != NULL &&
+    current->next->proc.currency <= new_node->proc.currency)
     {
         current = current->next;
     }
@@ -53,7 +54,7 @@ void pseudotree_print(Pseudotree* t)
 {
     for (struct node* curr = t->first; curr != NULL; curr = curr->next)
     {
-        printf("Proc %c (pid: %-4d) tickets: %2.d, stride: %4.d\n",
-        curr->proc.pid, curr->proc.pid, curr->proc.tickets, curr->proc.stride);
+        printf("Proc %c (pid: %-4d) stride: %2.d, currency: %4.d\n",
+        curr->proc.pid, curr->proc.pid, curr->proc.stride, curr->proc.currency);
     }
 }

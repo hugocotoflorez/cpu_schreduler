@@ -56,7 +56,7 @@ void awake_some_io_proc(Stack* s)
 {
     for (int i = 0; i < s->ptr; i++)
         if (s->items[i].active == 0)
-            s->items[i].active = rand() % 100 <= IO_AWAKE_PROB * 100;
+            s->items[i].active = rand() % 101 <= IO_AWAKE_PROB * 100;
 }
 
 #include <stdio.h>
@@ -66,7 +66,7 @@ void stack_print(Stack* s)
     for (int i = 0; i < s->ptr; i++)
     {
         curr = s->items[i];
-        printf("Proc %c (pid: %-4d) tickets: %2.d, stride: %4.d [on io]\n",
-        curr.pid, curr.pid, curr.tickets, curr.stride);
+        printf("Proc %c (pid: %-4d) stride: %2.d, currency: %4.d [on io]\n",
+        curr.pid, curr.pid, curr.stride, curr.currency);
     }
 }

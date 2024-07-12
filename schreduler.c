@@ -16,7 +16,7 @@ int curr_pid = 'A';
 #define random_proc                                                               \
     (Proc)                                                                        \
     {                                                                             \
-        .active = 1, .pid = curr_pid++, .tickets = rand() % 15,                   \
+        .active = 1, .pid = curr_pid++, .stride = rand() % 15,                    \
         .priv.runtime_ms_left = rand() % 500, .priv.io = (float)(rand() % 5) / 10 \
     }
 
@@ -24,7 +24,7 @@ void schredule(Proc* p)
 {
     if (VERBOSE > 1)
         printf("Executing proc (pid: %-3d) (%.3d ms left)", p->pid, p->priv.runtime_ms_left);
-    p->stride += p->tickets;
+    p->currency += p->stride;
     p->priv.runtime_ms_left -= TIME_SLICE;
     p->active = rand() % 10 >= p->priv.io * 10; // set if on io
     // if proc on io or end before slice, return
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
     do
     {
         current = pseudotree_remove_head(
-        &active_procs); // current is the active proc with the lowest stride
+        &active_procs); // current is the active proc with the lowest currency
 
 
         schredule(&current); // execute current proc on the cpu
@@ -81,10 +81,9 @@ int main(int argc, char* argv[])
         // move active processes from the stack to the tree
         while ((temp = stack_remove_active(&inactive_procs)).pid > 0)
         {
-            temp.stride = pseudotree_get_head(&active_procs).stride;
+            temp.currency = pseudotree_get_head(&active_procs).currency;
             pseudotree_insert(&active_procs, temp);
         }
-
 
 
         if (VERBOSE > 1)
