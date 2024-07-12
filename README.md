@@ -20,3 +20,6 @@ as well as exit io mode.
  - `Active processes`: Stored in a sorted list,
  it should be a black-red tree (as some linux book said).
  - `Inactive processes`: Stored into a dynamic array aka stack.
+
+> [!attention]
+> I do this some random morning, dont expect pretty output or elavorated stuff
