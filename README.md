@@ -15,3 +15,8 @@ Processes can enter in io mode, in a random way
 (only the process that is running in the cpu),
 as well as exit io mode.
 
+### Data structures
+
+ - `Active processes`: Stored in a sorted list,
+ it should be a black-red tree (as some linux book said).
+ - `Inactive processes`: Stored into a dynamic array aka stack.
