@@ -58,3 +58,8 @@ void pseudotree_print(Pseudotree* t)
         curr->proc.pid, curr->proc.pid, curr->proc.stride, curr->proc.currency);
     }
 }
+
+void pseudotree_destroy(Pseudotree* t)
+{
+    free(t->first);
+}

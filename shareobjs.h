@@ -30,6 +30,7 @@ void stack_insert(Stack*, Proc);
 Proc stack_remove_active(Stack*);
 void awake_some_io_proc(Stack*);
 void stack_print(Stack* s);
+void stack_destroy(Stack* s);
 
 /*
  * This should be a tree
@@ -52,5 +53,6 @@ void pseudotree_insert(Pseudotree* t, Proc p);
 Proc pseudotree_remove_head(Pseudotree* t);
 Proc pseudotree_get_head(Pseudotree* t);
 void pseudotree_print(Pseudotree* t);
+void pseudotree_destroy(Pseudotree* t);
 
 #endif // _LIB_H

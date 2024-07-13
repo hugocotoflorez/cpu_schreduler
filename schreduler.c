@@ -99,6 +99,9 @@ int main(int argc, char* argv[])
 
     } while (current.pid != 0 || inactive_procs.ptr > 0); // stop when no processes remaining
 
+    // destroy stuff
+    stack_destroy(&inactive_procs);
+    pseudotree_destroy(&active_procs);
 
     puts("timeline");
     for (int i = 0; i < timeline_len; i++)

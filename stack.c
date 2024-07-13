@@ -70,3 +70,9 @@ void stack_print(Stack* s)
         curr.pid, curr.pid, curr.stride, curr.currency);
     }
 }
+
+void stack_destroy(Stack* t)
+{
+    free(t->items);
+    *t = (Stack){ 0 };
+}
